@@ -1,5 +1,5 @@
 ## 项目模板
 
-#### react-project              React模板
+#### `React模板` react-project
 
-#### vue-project                Vue模板
+#### `Vue模板` vue-project
