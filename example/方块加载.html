@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方块加载</title>
+</head>
+
+<body>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #252839;
+    }
+
+    .box {
+        width: 120px;
+        height: 120px;
+        position: relative;
+    }
+
+    .box div {
+        width: 45px;
+        height: 45px;
+        border-radius: 7px;
+        background-color: #252839;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: ain 2s linear infinite;
+    }
+
+    @keyframes ain {
+        0% {
+            top: 0;
+            left: 0;
+        }
+
+        12.5% {
+            top: 0;
+            left: 50%;
+        }
+
+        25% {
+            top: 0;
+            left: 50%;
+        }
+
+        37.5% {
+            top: 50%;
+            left: 50%;
+        }
+
+        50% {
+            top: 50%;
+            left: 50%;
+        }
+
+        62.5% {
+            top: 50%;
+            left: 0;
+        }
+
+        75% {
+            top: 50%;
+            left: 0;
+        }
+
+        87.5% {
+            top: 0;
+            left: 0;
+        }
+
+        100% {
+            top: 0;
+            left: 0;
+        }
+
+    }
+
+    .box div:nth-child(1) {
+        animation-delay: 0s;
+        background-color: #fd3f39;
+    }
+
+    .box div:nth-child(2) {
+        animation-delay: 0.667s;
+        background-color: #ffcb2f;
+    }
+
+    .box div:nth-child(3) {
+        animation-delay: 1.33s;
+        background-color: #53d86a;
+    }
+</style>
+
+</html>

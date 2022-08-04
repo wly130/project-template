@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷达</title>
+</head>
+
+<body>
+    <ul class="box">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #252839;
+    }
+
+    .box {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        position: relative;
+        border: 20px solid #f7f7f7;
+        box-shadow: 0 0 0 #c5c5c5, inset 0 0 100px rgba(0, 255, 0, 0.5);
+        overflow: hidden;
+    }
+
+    .box li {
+        width: 100%;
+        height: 1px;
+        background-color: green;
+        position: absolute;
+        top: 50%;
+    }
+
+    .box li:nth-child(2) {
+        transform: rotate(90deg);
+    }
+
+    .box li:nth-child(3) {
+        transform: rotate(45deg);
+    }
+
+    .box li:nth-child(4) {
+        transform: rotate(-45deg);
+    }
+
+    .box li:nth-child(5),
+    .box li:nth-child(6) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid green;
+        background-color: transparent;
+        border-radius: 50%;
+    }
+
+    .box li:nth-child(5) {
+        width: 120px;
+        height: 130px;
+    }
+
+    .box li:nth-child(6) {
+        width: 250px;
+        height: 250px;
+    }
+
+    .box li:nth-child(7) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(45deg, #00ff00 0%, transparent 50%);
+        animation: ain 2.5s linear infinite;
+        transform-origin: top left;
+    }
+
+    @keyframes ain {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+</html>
