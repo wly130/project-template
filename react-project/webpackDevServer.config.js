@@ -1,7 +1,7 @@
 module.exports = {
     devServer: {
         host: 'localhost', //本地IP
-        port: 8080, //端口号
+        port: 3000, //端口号
         https: false, //是否启用 https
         hotOnly: false,
         proxy: { //配置跨域

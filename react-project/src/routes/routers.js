@@ -1,9 +1,12 @@
 //引入自定义组件
-import index from "../pages/index";
+import Index from "../pages/index";
+
+import KeepAlive from 'react-activation'; //路由缓存
 
 const routes = [{
-    path: '/',
-    component: index,
+    name: '',
+    path: "/",
+    element: <KeepAlive cacheKey="index"><Index /></KeepAlive>,
     exact: true
 }];
 

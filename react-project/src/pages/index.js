@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export class index extends Component {
+export class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -67,5 +67,5 @@ export class index extends Component {
     }
 }
 
-export default index;
+export default Index;
 

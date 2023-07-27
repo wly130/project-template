@@ -3,13 +3,14 @@ import {
 	post
 } from './request.js'
 
+const baseUrl = "/api";
 const api = {
 	//params  所传参数
 	apiGet(params) {
-		return get('/api/url', params);
+		return get(baseUrl + '/api/url', params);
 	},
 	apiPost(params) {
-		return post('/api/url', params);
+		return post(baseUrl + '/api/url', params);
 	},
 }
 
