@@ -1,7 +1,32 @@
-# Vue 3 + Vite
+- 下载依赖包
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+	```
+	npm install
+	```
 
-## Recommended IDE Setup
+	### 运行项目
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+	```
+	npm run start
+	```
+
+	### 目录/文件
+
+	| 目录/文件          | 作用         |
+	| ------------------ | ------------ |
+	| public             | 公共文件     |
+	| src/api            | 接口配置目录 |
+	| src/api/api.js     | 接口配置文件 |
+	| src/api/requset.js | Axios封装    |
+	| src/assets         | 静态资源文件 |
+	| src/components     | 组件目录     |
+	| src/pages          | 页面目录     |
+	| src/router         | 路由配置目录 |
+	| src/utils          | 工具目录     |
+	| src/App.vue        | 入口页面     |
+	| src/main.js        | 入口文件     |
+	| index.html         | 项目入口文件 |
+	| package.json       | 依赖配置文件 |
+	| vite.config.js     | 项目配置文件 |
+
+	

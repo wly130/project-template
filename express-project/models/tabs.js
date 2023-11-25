@@ -2,11 +2,11 @@ const db = require("../config/mysql-config");
 
 const tabs = db.sequelize.define("tabs", {
     id: {
-        type: db.DataTypes.INTEGER(100),
+        type: db.DataTypes.INTEGER,
         primaryKey: true
     },
     name: {
-        type: db.DataTypes.STRING(100),
+        type: db.DataTypes.STRING,
         allowNull: false
     }
 }, {
