@@ -17,7 +17,6 @@ router.get("/login", userCtl.login, userCtl.login);
  * @param {number} pageNum 每页页数
  */
 router.get("/getInfo", userValid.getInfo, userCtl.getInfo);
-
 /**
  * @method 方法名
  * @param {number}  id 参数

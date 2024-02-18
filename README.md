@@ -7,6 +7,6 @@
 | vue2-project     | Vue2项目模板     |
 | vue3-project     | Vue3项目模板     |
 | vite-react | Vite+React项目模板 |
-| vue3-ts | Vue3+Vite+TpyeScript+项目模板 |
-| electorn-vite-project | Electorn-Vite+Vue3+项目模板 |
+| vue3-ts | Vue3+Vite+TypeScript+项目模板 |
+| electron-vite-project | Electron-Vite+Vue3+项目模板 |
 | springBoot-Project | springBoot项目模板 |

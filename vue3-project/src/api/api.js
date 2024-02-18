@@ -3,7 +3,7 @@ import {
 	post
 } from './request.js'
 
-const baseUrl = '/api';
+const baseUrl = import.meta.env.VITE_API_URL;
 const api = {
 	getInfo(params) {
 		return get(baseUrl + '/getInfo', params);

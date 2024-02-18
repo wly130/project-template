@@ -6,16 +6,15 @@ const logConfig = require("./config/log-config");
 const { expressjwt: expressJwt } = require("express-jwt");
 const errorConfig = require("./config/error-config");
 const { getToken } = require('./config/token-config');
-//导入路由表
-const IndexRouter = require('./routes/index');
+const IndexRouter = require('./routes/index');//导入路由表
 
 const app = express();
-const baseUrl = "localhost";
-const port = 3000;
+const IP_ADDRESS = "localhost";
+const POST = 3000;
 const SECRET_KEY = "MY_KEY";
+
 log4js.configure(logConfig);
 const loggerOfConsole = log4js.getLogger();
-
 app.use(log4js.connectLogger(loggerOfConsole, { level: 'debug' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("*", (req, res, next) => {
@@ -49,7 +48,7 @@ app.use('/api', IndexRouter);
 //错误处理
 app.use(errorConfig());
 //监控接口
-app.listen(port, 'localhost', () => {
-    console.log(`服务已开启,地址:https://${baseUrl}:${port}`);
+app.listen(POST, IP_ADDRESS, () => {
+    console.log(`服务已开启,地址:https://${IP_ADDRESS}:${POST}`);
 });
 module.exports = app;

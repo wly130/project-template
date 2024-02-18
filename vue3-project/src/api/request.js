@@ -8,10 +8,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.interceptors.request.use(
 	config => {
 		// 每次发送请求之前判断是否存在token
-		const token = slocalStorage.getItem('token');
-		if (token) { // 判断是否存在token
-			config.headers.Token = token;
-		}
+		const token = localStorage.getItem('token');
+		if (token) config.headers.Token = token;
 		return config;
 	},
 	error => {
@@ -28,9 +26,7 @@ axios.interceptors.response.use(
 	},
 	// 服务器状态码不是200的情况
 	error => {
-		if (error.response.status) {
-			console.log(error)
-		}
+		if (error.response.status) console.log(error);
 		return Promise.reject(error.response);
 	}
 );
