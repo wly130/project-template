@@ -1,13 +1,9 @@
-import {
-	get,
-	post
-} from './request.js'
+import {get, post} from './request.js';
 
 const baseUrl = import.meta.env.VITE_API_URL;
 const api = {
-	getInfo(params) {
-		return get(baseUrl + '/getInfo', params);
-	}
+    getInfo: (params) => (get(`${baseUrl}/getInfo`, params)),
+    updateInfo: (params) => (post(`${baseUrl}/updateInfo`, params)),
 };
 
 export default api;

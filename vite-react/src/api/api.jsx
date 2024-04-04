@@ -1,11 +1,8 @@
-import { get, post } from "./request.jsx";
+import {get, post} from "./request.jsx";
 
-// const baseUrl = "http://localhost:3000";
-const baseUrl = "/api";
+const baseUrl = import.meta.env.VITE_API_URL;
 const api = {
-    getInfo(params) {
-        return get(baseUrl + '/getInfo', params);
-    },
+    getInfo: (params) => (get(`${baseUrl}/getInfo`, params)),
 };
 
 export default api;

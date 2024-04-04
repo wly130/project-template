@@ -1,12 +1,13 @@
 import {
-	createApp
+    createApp
 } from 'vue';
 import App from './App.vue';
 import router from './router/index';
 import api from './api/api.js';
-const app = createApp(App);
 
-app.config.globalProperties.$api = api;
+const {config, mount, use} = createApp(App);
 
-app.use(router);
-app.mount('#app');
+config.globalProperties.$api = api;
+
+use(router);
+mount('#app');

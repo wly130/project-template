@@ -3,9 +3,9 @@ const path = require("path");
 const fs = require('fs');//文件操作
 const log4js = require('log4js');
 const logConfig = require("./config/log-config");
-const { expressjwt: expressJwt } = require("express-jwt");
+const {expressjwt: expressJwt} = require("express-jwt");
 const errorConfig = require("./config/error-config");
-const { getToken } = require('./config/token-config');
+const {getToken} = require('./config/token-config');
 const IndexRouter = require('./routes/index');//导入路由表
 
 const app = express();
@@ -15,7 +15,7 @@ const SECRET_KEY = "MY_KEY";
 
 log4js.configure(logConfig);
 const loggerOfConsole = log4js.getLogger();
-app.use(log4js.connectLogger(loggerOfConsole, { level: 'debug' }));
+app.use(log4js.connectLogger(loggerOfConsole, {level: 'debug'}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("*", (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,15 +26,13 @@ app.use("*", (req, res, next) => {
 //Token验证
 app.use((req, res, next) => {
     let token = req.headers.authorization;
-    if (token === undefined) {
+    if (!(!!token)) {
         return next();
     } else {
         getToken(token).then((data) => {
             req.data = data;
             return next();
-        }).catch((err) => {
-            return next();
-        });
+        }).catch((err) => (next()));
     }
 });
 app.use(expressJwt({
@@ -48,7 +46,5 @@ app.use('/api', IndexRouter);
 //错误处理
 app.use(errorConfig());
 //监控接口
-app.listen(POST, IP_ADDRESS, () => {
-    console.log(`服务已开启,地址:https://${IP_ADDRESS}:${POST}`);
-});
+app.listen(POST, IP_ADDRESS, () => console.log(`服务已开启,地址:https://${IP_ADDRESS}:${POST}`));
 module.exports = app;

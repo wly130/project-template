@@ -1,33 +1,36 @@
 <script setup>
 import that from "../utils/utils.js";
+import Index from "../components/index.vue";
 
-var { proxy } = that.getCurrentInstance();
+let {proxy} = that.getCurrentInstance();
 
 let obj = that.reactive({});
 let str = that.ref('');
+let key = that.ref(0);
 //获取数据
-let getInfo = (e) => {
+const getInfo = (value) => {
     let params = {
         key: value
     };
     proxy.$api.getInfo(params).then(res => {
-
+        if (res.code !== 200) return;
     });
 }
+const keyChange = (value) => key.value = value;
 </script>
 
 <template>
     <div id="app">
         <button @click="getInfo()"></button>
+        <Index :key="key" @keyChange="keyChange"/>
     </div>
 </template>
 
 <style scoped>
 #app {
     width: 70%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10rem;
+    margin: 0 auto 10rem;
 }
 </style>

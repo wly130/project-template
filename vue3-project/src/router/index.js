@@ -1,24 +1,20 @@
 import {
-	createRouter,
-	createWebHashHistory
+    createRouter,
+    createWebHashHistory
 } from "vue-router";
-
-const index = () => import("../pages/index.vue");
-
-const routes = [{
-	path: "/",
-	name: "index",
-	component: index
-}];
+import routes from './routes';
 
 const router = createRouter({
-	history: createWebHashHistory(),
-	routes: routes
+    history: createWebHashHistory(),
+    routes: routes,
+    scrollBehavior() {
+        return {top: 0}
+    }
 });
 
 //路由守卫
 router.beforeEach((to, from, next) => {
-	next();
+    next();
 });
 
 export default router;
