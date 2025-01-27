@@ -1,5 +1,5 @@
 const validate = require("../config/validate-config");
-const { query, body } = require('express-validator');
+const {query, body} = require('express-validator');
 
 const userValid = {
     login: validate([
