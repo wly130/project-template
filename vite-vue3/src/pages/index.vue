@@ -4,16 +4,14 @@ import Index from "../components/index.vue";
 
 let {proxy} = that.getCurrentInstance();
 
-let obj = that.reactive({});
-let str = that.ref('');
+let info = that.ref({});
 let key = that.ref(0);
 //获取数据
 const getInfo = (value) => {
-    let params = {
-        key: value
-    };
+    let params = {key: value};
     proxy.$api.getInfo(params).then(res => {
         if (res.code !== 200) return;
+        info.value = res.data;
     });
 }
 const keyChange = (value) => key.value = value;
@@ -21,7 +19,8 @@ const keyChange = (value) => key.value = value;
 
 <template>
     <div id="app">
-        <button @click="getInfo()"></button>
+        <button @click="getInfo">获取数据</button>
+        {{ info }}
         <Index :key="key" @keyChange="keyChange"/>
     </div>
 </template>
