@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Table} from '../../models/test.entity';
-import {ListType, StatusInfo} from '../../interface/test.interface';
+import {ListType, StatusInfo} from '../../common/global';
 import {addInfoDto, delInfoDto, getInfoListDto, updateInfoDto} from '../../validator/test.validator';
 
 @Injectable()
@@ -48,7 +48,7 @@ export class TestService {
         }
     }
 
-    async getInfoList(query: getInfoListDto): Promise<StatusInfo<ListType | null>> {
+    async getInfoList(query: getInfoListDto): Promise<StatusInfo<ListType<Table> | null>> {
         try {
             const {page, pageSize, searchText} = query;
             const startPage = (page - 1) * pageSize;

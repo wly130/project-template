@@ -1,7 +1,8 @@
-import {Body, Controller, Get, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Post, Put, Query} from '@nestjs/common';
 import {TestService} from './test.service';
-import {ListType, StatusInfo} from '../../interface/test.interface';
+import {ListType, StatusInfo} from '../../common/global';
 import {addInfoDto, delInfoDto, getInfoListDto, updateInfoDto} from '../../validator/test.validator';
+import {Table} from '../../models/test.entity';
 
 @Controller('test')
 export class TestController {
@@ -13,18 +14,18 @@ export class TestController {
         return this.testService.addInfo(body);
     }
 
-    @Post('delInfo')
+    @Delete('delInfo')
     delInfo(@Body() body: delInfoDto): Promise<StatusInfo<null>> {
         return this.testService.delInfo(body);
     }
 
-    @Post('updateInfo')
+    @Put('updateInfo')
     updateInfo(@Body() body: updateInfoDto): Promise<StatusInfo<null>> {
         return this.testService.updateInfo(body);
     }
 
     @Get('getInfoList')
-    getInfoList(@Query() query: getInfoListDto): Promise<StatusInfo<ListType | null>> {
+    getInfoList(@Query() query: getInfoListDto): Promise<StatusInfo<ListType<Table> | null>> {
         return this.testService.getInfoList(query);
     }
 }
