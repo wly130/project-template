@@ -32,9 +32,6 @@ lerna-debug.log*
 .idea
 /pnpm-lock.yaml
 
-.env
-.env.*
-
 # temp directory
 .temp
 .tmp
