@@ -1,8 +1,8 @@
 <script setup>
-import that from "../utils/utils.js";
+import {defineEmits, defineProps, getCurrentInstance} from "vue";
 import {useRouter} from "vue-router";
 
-let {proxy} = that.getCurrentInstance();
+let {proxy} = getCurrentInstance();
 const router = useRouter();
 
 let props = defineProps({

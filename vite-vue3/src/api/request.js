@@ -1,45 +1,70 @@
 import axios from 'axios';
+import router from '../router/index.js';
 
-// 请求超时时间
-axios.defaults.timeout = 15000;
-// 请求头
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+const instance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    timeout: 15000, withCredentials: true,
+    headers: {post: {'Content-Type': 'application/json;charset=utf-8'}}
+});
 // 请求拦截器
-axios.interceptors.request.use(
+instance.interceptors.request.use(
     config => {
-        // 每次发送请求之前判断是否存在token
         const accessToken = localStorage.getItem('accessToken');
-        if (token) config.headers.Authorization = `Bearer ${accessToken}`;
+        if (!['/login', '/register'].includes(config.url) && !accessToken) {
+            const controller = new AbortController();
+            controller.abort();
+            localStorage.removeItem('accessToken');
+            router.push({path: '/login'}).then(res => console.log(res));
+            return Promise.reject({code: 500});
+        }
+        if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
         return config;
     },
     error => (Promise.error(error))
 );
 // 响应拦截器
-axios.interceptors.response.use(
+instance.interceptors.response.use(
     response => {
         if (response.status === 200) return Promise.resolve(response);
         else return Promise.reject(response);
     },
     // 服务器状态码不是200的情况
-    error => {
-        if (error.response.status) console.log(error);
-
+    async error => {
+        const originalRequest = error.config;
+        if (error.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+            const {data} = await instance.post('/refreshToken', {});
+            localStorage.setItem('accessToken', data.accessToken || null);
+            originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+            return instance(originalRequest);
+        }
+        if (error.status === 403) {
+            localStorage.removeItem('accessToken');
+            await router.push({path: '/login'});
+        }
         return Promise.reject(error.response);
     }
 );
+const pending = new Set();
 
-// 封装get请求
 export function get(url, params) {
+    if (pending.has(url)) return Promise.resolve({});
+    pending.add(url);
     return new Promise((resolve, reject) => {
-        axios.get(url, {params: params}).then(res => resolve(res.data)).catch(err => reject(err.data));
+        instance.get(url, {params}).then(res => {
+            pending.delete(url);
+            resolve(res.data);
+        }).catch(err => {
+            pending.delete(url);
+            reject(err);
+        });
     });
 }
 
-// 封装post请求
 export function post(url, params) {
     return new Promise((resolve, reject) => {
-        axios.post(url, params).then(res => resolve(res.data)).catch(err => reject(err.data));
+        instance.post(url, params).then(res => resolve(res.data)).catch(err => reject(err));
     });
 }
 
-export default axios;
+export default instance;

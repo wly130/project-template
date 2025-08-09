@@ -1,9 +1,9 @@
 <script setup>
-import that from "../utils/utils.js";
+import {getCurrentInstance, reactive} from "vue";
 
-let {proxy} = that.getCurrentInstance();
+let {proxy} = getCurrentInstance();
 
-let info = that.reactive({username: "", password: ""});
+let info = reactive({username: "", password: ""});
 
 const submitChange = () => {
     if (!(!!info.username) || !(!!info.password)) return;
@@ -23,5 +23,4 @@ const submitChange = () => {
 </template>
 
 <style scoped>
-
 </style>

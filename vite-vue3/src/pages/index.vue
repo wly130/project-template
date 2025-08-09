@@ -1,11 +1,11 @@
 <script setup>
-import that from "../utils/utils.js";
+import {getCurrentInstance, ref} from "vue";
 import Index from "../components/index.vue";
 
-let {proxy} = that.getCurrentInstance();
+let {proxy} = getCurrentInstance();
 
-let info = that.ref({});
-let key = that.ref(0);
+let info = ref({});
+let key = ref(0);
 //获取数据
 const getInfo = (value) => {
     let params = {key: value};
