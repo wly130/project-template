@@ -1,30 +1,28 @@
 import {Injectable, UnauthorizedException} from '@nestjs/common';
 import {Response} from 'express';
-import {StatusInfo} from '../../common/global';
 import {LoginDto} from '../../validator/auth.validator';
-import {LoginInfo, RefreshToken} from '../../interface/auth.interface';
 import {TokenService} from '../../config/token.config';
 import {JwtService} from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly tokenService: TokenService,
-        private readonly jwtService: JwtService,
+        private tokenService: TokenService,
+        private jwtService: JwtService,
     ) {
     }
 
-    async login(body: LoginDto, res: Response): Promise<StatusInfo<LoginInfo>> {
+    async login(body: LoginDto, res: Response): Promise<any> {
         const access_token = await this.tokenService.getAccessToken(1);
         const refresh_token = await this.tokenService.getRefreshToken(1);
         res.cookie('refresh_token', refresh_token, {
             httpOnly: true, secure: false, sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000, path: '/',
         });
-        return {code: 200, msg: '登录成功', data: {access_token, user_id: 1}};
+        return {code: 200, msg: '登录成功', data: {access_token}};
     }
 
-    async refreshToken(refresh_token: string): Promise<StatusInfo<RefreshToken>> {
+    async refreshToken(refresh_token: string): Promise<any> {
         try {
             let {user_id} = this.jwtService.verify(refresh_token);
             const access_token = await this.tokenService.getAccessToken(user_id);
@@ -35,7 +33,7 @@ export class AuthService {
         }
     }
 
-    async logout(refresh_token: string, res: Response): Promise<StatusInfo<any>> {
+    async logout(refresh_token: string, res: Response): Promise<any> {
         try {
             let {user_id} = this.jwtService.verify(refresh_token);
             res.clearCookie(refresh_token, {httpOnly: true, path: '/', secure: false, sameSite: 'lax'});

@@ -3,9 +3,7 @@ require('dotenv').config();
 
 const {DB_DATE_BASE_NAME, DB_HOST_NAME, DB_PASSWORD, DB_PORT, DB_HOST, DB_TYPE} = process.env;
 const seq = new Sequelize(DB_DATE_BASE_NAME, DB_HOST_NAME, DB_PASSWORD, {
-    host: DB_HOST,
-    port: DB_PORT,
-    dialect: DB_TYPE,
+    host: DB_HOST, port: DB_PORT, dialect: DB_TYPE,
     pool: {max: 10, min: 0, acquire: 60000},
     timezone: '+08:00',
     dialectOptions: {dateStrings: true, typeCast: true}

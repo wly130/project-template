@@ -9,19 +9,19 @@ const userValid = require("../validator/user.js");
  * @param {string} username 用户名
  * @param {string} password 密码
  */
-router.get("/login", userCtl.login, userCtl.login);
+router.get("/login", userValid.loginDto, userCtl.login);
 /**
  * @method 方法名
  * @param {number} id 参数
  * @param {number} page 当前页
  * @param {number} pageNum 每页页数
  */
-router.get("/getInfo", userValid.getInfo, userCtl.getInfo);
+router.get("/getInfo", userValid.getInfoDto, userCtl.getInfo);
 /**
  * @method 方法名
  * @param {number}  id 参数
  * @param {string}  name 参数
  */
-router.post("/setInfo", userValid.setInfo, userCtl.setInfo);
+router.post("/setInfo", userValid.setInfoDto, userCtl.setInfo);
 
 module.exports = router;

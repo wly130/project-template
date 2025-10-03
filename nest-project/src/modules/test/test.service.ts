@@ -2,7 +2,6 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Table} from '../../models/test.entity';
-import {ListType, StatusInfo} from '../../common/global';
 import {addInfoDto, delInfoDto, getInfoListDto, updateInfoDto} from '../../validator/test.validator';
 
 @Injectable()
@@ -13,7 +12,7 @@ export class TestService {
     ) {
     }
 
-    async addInfo(body: addInfoDto): Promise<StatusInfo<null>> {
+    async addInfo(body: addInfoDto): Promise<any> {
         try {
             const {name} = body;
             await this.table.save({name});
@@ -24,7 +23,7 @@ export class TestService {
         }
     }
 
-    async delInfo(body: delInfoDto): Promise<StatusInfo<null>> {
+    async delInfo(body: delInfoDto): Promise<any> {
         try {
             const {id, name} = body;
             let res = await this.table.delete({id, name});
@@ -36,7 +35,7 @@ export class TestService {
         }
     }
 
-    async updateInfo(body: updateInfoDto): Promise<StatusInfo<null>> {
+    async updateInfo(body: updateInfoDto): Promise<any> {
         try {
             const {id, name} = body;
             let res = await this.table.update({id}, {name});
@@ -48,7 +47,7 @@ export class TestService {
         }
     }
 
-    async getInfoList(query: getInfoListDto): Promise<StatusInfo<ListType<Table> | null>> {
+    async getInfoList(query: getInfoListDto): Promise<any> {
         try {
             const {page, pageSize, searchText} = query;
             const startPage = (page - 1) * pageSize;

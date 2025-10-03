@@ -1,8 +1,3 @@
-export interface LoginInfo {
-    access_token: string;
-    user_id: number;
-}
-
-export interface RefreshToken {
+export interface TokenInfo {
     access_token: string;
 }

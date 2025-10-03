@@ -1,42 +1,34 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const setAccessToken = (data) => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve(jwt.sign(data, process.env.TOKEN_ACCESS_KEY, {expiresIn: process.env.TOKEN_ACCESS_TIME}));
-        } catch (err) {
-            reject(null);
-        }
-    });
+const SECRET_KEY = process.env.SECRET_KEY;
+
+const getAccessToken = (user_id) => {
+    return jwt.sign({user_id}, SECRET_KEY, {expiresIn: process.env.ACCESS_TOKEN_TIME});
 };
-const setRefreshToken = (data) => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve(jwt.sign(data, process.env.TOKEN_REFRESH_KEY, {expiresIn: process.env.TOKEN_REFRESH_TIME}));
-        } catch (err) {
-            reject(null);
-        }
-    });
+
+const getRefreshToken = (user_id) => {
+    return jwt.sign({user_id}, SECRET_KEY, {expiresIn: process.env.RRFRESH_TOKEN_TIME});
 };
-const verifyToken = (token, type = 'access', data = null) => {
-    return new Promise((resolve, reject) => {
-        if (!token) {
-            reject({code: 404, error: 'token空'})
-        } else {
-            let key = process.env.TOKEN_ACCESS_KEY;
-            if (type === 'refresh') key = process.env.TOKEN_REFRESH_KEY;
-            jwt.verify(token.split(' ')[1], key, (err, user) => {
-                if (err) reject(err);
-                let info = {code: 200, msg: '有效token'};
-                if (type === 'refresh') info.newtoken = setAccessToken(data);
-                resolve(info);
-            });
-        }
-    })
+
+const verifyToken = (token) => {
+    try {
+        return jwt.verify(token, SECRET_KEY);
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) return res.status(200).json({code: 401, msg: '无Token'});
+    const parts = authHeader.split(' ');
+    if (parts.length !== 2 || parts[0] !== 'Bearer') return res.status(200).json({code: 401, msg: '无Token'});
+    const token = parts[1];
+    const user = verifyToken(token);
+    if (!user) return res.status(200).json({code: 403, msg: '无效Token'});
+    req.user = user;
+    next();
 }
-module.exports = {
-    setAccessToken,
-    setRefreshToken,
-    verifyToken
-}
+
+module.exports = {getAccessToken, getRefreshToken, verifyToken, authMiddleware};

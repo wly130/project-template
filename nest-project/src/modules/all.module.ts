@@ -1,13 +1,14 @@
-import { Global, Module } from '@nestjs/common';
-import { TestModule } from './test/test.module';
+import {Global, Module} from '@nestjs/common';
+import {TestModule} from './test/test.module';
+import {AuthModule} from './auth/auth.module';
 
 @Global()
 @Module({
     imports: [
-        TestModule,
+        AuthModule, TestModule
     ],
     exports: [
-        TestModule,
+        AuthModule, TestModule
     ],
 })
 export class AllModules {
