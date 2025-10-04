@@ -29,8 +29,6 @@
         "typeorm": "^0.3.25"
     },
     "devDependencies": {
-        "@nestjs/cli": "^11.0.0",
-        "@nestjs/schematics": "^11.0.0",
         "@types/express": "^5.0.0",
         "@types/node": "^22.10.7",
         "ts-node": "^10.9.2",
