@@ -20,45 +20,39 @@ instance.interceptors.request.use(
         if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
         return config;
     },
-    error => (Promise.error(error))
+    error => (Promise.reject(error))
 );
 // 响应拦截器
 instance.interceptors.response.use(
-    response => {
-        if (response.status === 200) return Promise.resolve(response);
-        else return Promise.reject(response);
-    },
-    // 服务器状态码不是200的情况
+    response => response,
+    // 请求失败的情况
     async error => {
         const originalRequest = error.config;
-        if (error.status === 401 && !originalRequest._retry) {
+        if (error.status === 401 && originalRequest && originalRequest.url !== '/refreshToken' && !originalRequest._retry) {
             originalRequest._retry = true;
-            const {data} = await instance.post('/refreshToken', {});
-            localStorage.setItem('accessToken', data.accessToken || null);
-            originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
-            return instance(originalRequest);
+            try {
+                const {data} = await instance.post('/refreshToken', {});
+                if (typeof data?.accessToken !== 'string' || !data.accessToken.trim()) {
+                    throw new Error('刷新接口未返回有效的 accessToken');
+                }
+                localStorage.setItem('accessToken', data.accessToken);
+                originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+                return instance(originalRequest);
+            } catch (refreshError) {
+                localStorage.removeItem('accessToken');
+                await router.push({path: '/login'});
+                return Promise.reject(refreshError);
+            }
         }
         if (error.status === 403) {
             localStorage.removeItem('accessToken');
             await router.push({path: '/login'});
         }
-        return Promise.reject(error.response);
+        return Promise.reject(error);
     }
 );
-const pending = new Set();
-
 export function get(url, params) {
-    if (pending.has(url)) return Promise.resolve({});
-    pending.add(url);
-    return new Promise((resolve, reject) => {
-        instance.get(url, {params}).then(res => {
-            pending.delete(url);
-            resolve(res.data);
-        }).catch(err => {
-            pending.delete(url);
-            reject(err);
-        });
-    });
+    return instance.get(url, {params}).then(res => res.data);
 }
 
 export function post(url, params) {

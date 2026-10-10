@@ -19,9 +19,9 @@ const keyChange = (value) => key.value = value;
 
 <template>
     <div id="app">
-        <button @click="getInfo">获取数据</button>
+        <button @click="getInfo(key)">获取数据</button>
         {{ info }}
-        <Index :key="key" @keyChange="keyChange"/>
+        <Index :item-key="key" @keyChange="keyChange"/>
     </div>
 </template>
 

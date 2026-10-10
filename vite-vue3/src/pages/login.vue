@@ -9,7 +9,6 @@ const submitChange = () => {
     if (!(!!info.username) || !(!!info.password)) return;
     proxy.$api.login(info).then(res => {
         if (res.code !== 200) return;
-        info.value = res.data;
     });
 }
 </script>

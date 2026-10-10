@@ -6,9 +6,9 @@ let {proxy} = getCurrentInstance();
 const router = useRouter();
 
 let props = defineProps({
-    key: {
+    itemKey: {
         type: Number,
-        default: true
+        default: 0
     }
 });
 let emit = defineEmits(["keyChange"]);
@@ -18,7 +18,7 @@ defineExpose({});
 
 <template>
     <div id="app">
-        {{ props.key }}
+        {{ props.itemKey }}
     </div>
 </template>
 
