@@ -1,0 +1,25 @@
+{
+    "name": "koa-project",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=24"
+    },
+    "scripts": {
+        "dev": "nodemon --watch src --ext ts --exec tsx src/server.ts",
+        "start": "tsx src/server.ts",
+        "check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "koa": "^3.3.0",
+        "@koa/router": "^15.7.1",
+        "@koa/bodyparser": "^6.1.0"
+    },
+    "devDependencies": {
+        "@types/koa": "^3.0.3",
+        "@types/node": "^24.19.2",
+        "nodemon": "^3.1.14",
+        "tsx": "^4.23.15",
+        "typescript": "~7.0.2"
+    }
+}

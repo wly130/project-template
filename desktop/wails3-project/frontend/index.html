@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>Wails 3 模板</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <main>
+            <section id="index">
+                <h1>首页</h1>
+                <a href="#/test">打开测试页</a>
+            </section>
+            <section id="test" hidden>
+                <h1>测试页</h1>
+                <button id="list">读取记录</button>
+                <output id="result"></output>
+                <p><a href="#/">返回首页</a></p>
+            </section>
+        </main>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

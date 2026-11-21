@@ -1,0 +1,38 @@
+# Go binaries / executable outputs; keep Go source and go.sum tracked
+/bin/
+/dist/
+/build/
+*.exe
+*.exe~
+*.test
+*.out
+*.prof
+coverage/
+coverage.*
+
+# Local cache, logs, temporary files
+.tmp/
+.cache/
+*.log
+logs/
+*.swp
+*~
+
+# IDE / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local environment files and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+
+# Do not ignore go.mod, go.sum, migrations or vendor/ if intentionally vendored.

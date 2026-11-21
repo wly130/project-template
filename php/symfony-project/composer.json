@@ -1,0 +1,22 @@
+{
+    "name": "project-template/symfony-project",
+    "type": "project",
+    "require": {
+        "php": "^8.4",
+        "ext-pdo_sqlite": "*",
+        "symfony/dotenv": "~8.1.6",
+        "symfony/framework-bundle": "~8.1.11",
+        "symfony/runtime": "~8.1.11",
+        "symfony/yaml": "~8.1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.task
+bin
+frontend/dist
+frontend/node_modules
+build/linux/appimage/build
+build/windows/nsis/MicrosoftEdgeWebview2Setup.exe
+# Mobile generated (per-machine; overlays hold absolute paths)
+build/ios/xcode/overlay.json
+build/ios/xcode/gen/
+build/android/overlay.json
+build/android/gen/
+
+# Go binaries / executable outputs; keep Go source and go.sum tracked
+/bin/
+/dist/
+*.exe
+*.exe~
+*.test
+*.out
+*.prof
+coverage/
+coverage.*
+
+# Local cache, logs, temporary files
+.tmp/
+.cache/
+*.log
+logs/
+*.swp
+*~
+
+# IDE / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local environment files and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+
+# Do not ignore go.mod, go.sum, migrations or vendor/ if intentionally vendored.
+/frontend/bindings/

@@ -1,0 +1,17 @@
+{
+    "name": "next-project",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "engines": {
+        "node": ">=20.9"
+    },
+    "dependencies": {
+        "next": "^16.4.6",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1"
+    }
+}

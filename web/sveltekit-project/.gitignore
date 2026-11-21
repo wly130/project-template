@@ -1,0 +1,58 @@
+# Local dependencies and pnpm store
+node_modules/
+.pnpm-store/
+
+# Framework build outputs (Vue/React/Vite/Next/Nuxt/SvelteKit/Angular)
+dist/
+build/
+.next/
+out/
+.nuxt/
+.output/
+.svelte-kit/
+.angular/
+.vite/
+.cache/
+.turbo/
+.vercel/
+.netlify/
+*.tsbuildinfo
+
+# Coverage, unit/integration/e2e test artifacts
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+blob-report/
+
+# Logs and temporary artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Local environment files. Real environment profiles stay untracked.
+# Keep only public, fake-value examples in source control.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Local IDE / OS files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.iml
+
+# Never ignore package.json, pnpm-lock.yaml, project source, migrations,
+# Angular src/environments/*.ts, or reusable public assets.

@@ -1,0 +1,65 @@
+# Dependencies and package-manager storage (not source)
+**/node_modules/
+**/.pnpm-store/
+**/vendor/
+
+# Build outputs, framework caches, generated source
+**/dist/
+**/build/
+**/target/
+**/out/
+**/.next/
+**/.nuxt/
+**/.output/
+**/.svelte-kit/
+**/.angular/
+**/.vite/
+**/.cache/
+**/.turbo/
+**/.gradle/
+**/.mvn/wrapper/dists/
+**/generated/
+
+# Logs, test artifacts, coverage
+**/coverage/
+**/.nyc_output/
+**/test-results/
+**/playwright-report/
+**/logs/
+**/var/cache/
+**/var/log/
+**/storage/framework/
+**/storage/logs/
+**/bootstrap/cache/
+**/*.log
+**/*.tsbuildinfo
+
+# Tool-managed lockfiles / checksums: keep in Git, do not format
+**/pnpm-lock.yaml
+**/package-lock.json
+**/yarn.lock
+**/bun.lock*
+**/composer.lock
+**/go.sum
+
+# Secrets and machine-local runtime environment files
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+**/*.pem
+**/*.key
+
+# Binary/minified files that should not be rewritten
+**/*.min.js
+**/*.min.css
+**/*.map
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.gif
+**/*.ico
+**/*.woff*
+**/*.ttf
+**/*.pdf

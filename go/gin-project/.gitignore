@@ -1,0 +1,77 @@
+# compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+.vscode
+.idea
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Go binaries / executable outputs; keep Go source and go.sum tracked
+/bin/
+/dist/
+/build/
+*.exe
+*.exe~
+*.test
+*.out
+*.prof
+coverage/
+coverage.*
+
+# Local cache, logs, temporary files
+.tmp/
+.cache/
+logs/
+*.swp
+*~
+
+# IDE / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+Thumbs.db
+
+# Local environment files and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+
+# Do not ignore go.mod, go.sum, migrations or vendor/ if intentionally vendored.

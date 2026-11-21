@@ -1,0 +1,44 @@
+# Composer / frontend dependencies
+/vendor/
+/node_modules/
+/.pnpm-store/
+
+# Laravel runtime writable state, generated views/cache/logs
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/private/*
+/bootstrap/cache/*.php
+
+# Frontend build/cache outputs (if Vite is used)
+/public/build/
+/public/hot
+/dist/
+/coverage/
+.phpunit.result.cache
+.phpunit.cache/
+
+# Local env files including development/test/production profiles
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+
+# Temporary/editor/OS files
+*.log
+*.tmp
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Preserve Laravel-owned .gitignore files in storage directories.
+# Commit composer.lock, database/migrations, bootstrap/app.php, and PHP source.
+/storage/*.sqlite*

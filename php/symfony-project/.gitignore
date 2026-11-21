@@ -1,0 +1,39 @@
+# Composer and frontend dependencies
+/vendor/
+/node_modules/
+/.pnpm-store/
+
+# Symfony cache, runtime logs and test outputs
+/var/cache/
+/var/log/
+/var/sessions/
+/var/test/
+/coverage/
+.phpunit.result.cache
+.phpunit.cache/
+/public/build/
+
+# Symfony convention: safe default .env and .env.dev/.env.test/.env.prod
+# may be tracked; keep actual per-machine overrides and secrets private.
+.env.local
+.env.*.local
+.env.local.php
+/.env.*.secret
+*.pem
+*.key
+*.p12
+
+# OS / IDE / temporary files
+*.log
+*.tmp
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Commit composer.lock for applications, migrations, src, and safe .env defaults.
+# Never commit actual APP_SECRET / DATABASE_URL credentials.
+/var/*.sqlite*

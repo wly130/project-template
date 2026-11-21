@@ -1,0 +1,69 @@
+{
+    "version": 1,
+    "projects": {
+        "angular-project": {
+            "projectType": "application",
+            "root": "",
+            "sourceRoot": "src",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "browser": "src/main.ts",
+                        "index": "src/index.html",
+                        "tsConfig": "tsconfig.json",
+                        "outputPath": "dist/angular-project"
+                    },
+                    "configurations": {
+                        "development": {
+                            "optimization": false,
+                            "sourceMap": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.development.ts"
+                                }
+                            ]
+                        },
+                        "test": {
+                            "optimization": false,
+                            "sourceMap": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.test.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "optimization": true,
+                            "sourceMap": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.production.ts"
+                                }
+                            ]
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "configurations": {
+                        "development": {
+                            "buildTarget": "angular-project:build:development"
+                        },
+                        "test": {
+                            "buildTarget": "angular-project:build:test"
+                        },
+                        "production": {
+                            "buildTarget": "angular-project:build:production"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                }
+            }
+        }
+    }
+}

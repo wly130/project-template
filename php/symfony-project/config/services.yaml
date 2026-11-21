@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    App\Controller\Items\ItemController:
+        tags: ['controller.service_arguments']
+    App\Repository\Items\ItemStore:
+        arguments:
+            $path: '%kernel.project_dir%/var/items_%kernel.environment%.sqlite'
